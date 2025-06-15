@@ -8,9 +8,9 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: "Retrieve version"
         run: echo "version=$(cat ./src/public/manifest.json | jq -r .version)" >> $GITHUB_ENV
-      - uses: actions/checkout@v4
       - name: Generate release tag
         id: release_tag
         run: |
