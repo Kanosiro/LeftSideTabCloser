@@ -3,7 +3,7 @@
 Chromeの拡張機能です。
 現在開いているタブよりも左側に表示されているタブを閉じます。
 
-元々Chromeウェブストアで公開されていた、あれこれ様の「左側のタブを閉じる」（https://chromewebstore.google.com/detail/flcppeolffillghlkkdocemkmbabmokm?utm_source=item-share-cb）がダウンロードできなくなっていたため、自分用に作りました。
+元々Chromeウェブストアで公開されていた、あれこれ様の「左側のタブを閉じる」（<a>https://chromewebstore.google.com/detail/flcppeolffillghlkkdocemkmbabmokm?utm_source=item-share-cb</a>）がダウンロードできなくなっていたため、自分用に作りました。
 
 # 使用方法
 
