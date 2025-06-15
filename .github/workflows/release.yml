@@ -15,7 +15,7 @@ jobs:
         id: release_tag
         run: |
           title=$(cat ./src/public/manifest.json | jq -r .name)
-          echo "tag=$(${ title } + "_" + ${{ env.version }})" >> $GITHUB_ENV
+          echo "tag=$($title + "_" + ${{ env.version }})" >> $GITHUB_ENV
 
       - name: CI
         run: npm ci
@@ -30,8 +30,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ env.version }}
-          release_name: v${{ env.version }}
+          tag_name: ${{ env.tag }}
+          release_name: ${{ env.tag }}
           draft: false
           prerelease: false
 
