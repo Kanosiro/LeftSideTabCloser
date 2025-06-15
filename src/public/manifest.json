@@ -1,11 +1,13 @@
 {
-    "name": "Close left tab",
-    "description": "Base Level Extention",
-    "version": "1.0",
+    "name": "Left Side Tab Closer",
+    "description": "アクティブなタブよりも左側にあるタブをまとめて閉じます。",
+    "version": "1.0.0",
     "manifest_version": 3,
     "permissions": [
-        "contextMenus",
         "tabs"
     ],
+    "background": {
+        "service_worker": "background.js"
+    },
     "action": {}
 }

@@ -1,0 +1,47 @@
+name: Build and Release
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Retrieve version"
+        run: echo "version=$(cat ./src/public/manifest.json | jq -r .version)" >> $GITHUB_ENV
+      - uses: actions/checkout@v4
+      - name: Generate release tag
+        id: release_tag
+        run: |
+          title=$(cat ./src/public/manifest.json | jq -r .name)
+          echo "tag=$(${ title } + "_" + ${{ env.version }})" >> $GITHUB_ENV
+
+      - name: CI
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Zip output
+        run: zip -r ${{ env.tag }}.zip dist
+
+      - name: Create Relese
+        id: create_relese
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ env.version }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_relese.outputs.upload_url }}
+          asset_path: ./${{ env.tag }}.zip
+          asset_name: ${{ env.tag }}.zip
+          asset_content_type: application/zip
