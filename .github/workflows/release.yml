@@ -14,8 +14,7 @@ jobs:
       - name: Generate release tag
         id: release_tag
         run: |
-          title=$(cat ./src/public/manifest.json | jq -r .name)
-          echo "tag=$($title + "_" + ${{ env.version }})" >> $GITHUB_ENV
+          echo "tag=$('v' + ${{ env.version }})" >> $GITHUB_ENV
 
       - name: CI
         run: npm ci
