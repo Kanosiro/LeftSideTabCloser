@@ -1,0 +1,15 @@
+name: Pull request process
+on:
+  pull_request:
+    branches: ["main"]
+jobs:
+  lint-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: ci
+        run: npm ci
+      - name: eslint
+        run: npm run lint
+      - name: prettier
+        run: npm run format

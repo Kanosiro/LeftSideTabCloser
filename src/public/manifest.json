@@ -1,7 +1,7 @@
 {
     "name": "Left Side Tab Closer",
     "description": "アクティブなタブよりも左側にあるタブをまとめて閉じます。",
-    "version": "1.0",
+    "version": "1.0.0",
     "manifest_version": 3,
     "permissions": [
         "tabs"
